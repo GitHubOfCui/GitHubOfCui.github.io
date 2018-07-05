@@ -1,746 +1,351 @@
 <!DOCTYPE html>
 <html>
-    <!-- title -->
-
-
-
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
-    <meta name="author" content="John Doe">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="John Doe">
-    <meta name="keywords" content="Hexo | John Doe">
-    <meta name="description" content="">
-    <meta name="Cache-Control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>fi3ework&#39;s Studio</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
+  <meta charset="utf-8">
+  
 
-    body {
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
-
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s 1;
-    }
-
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-</style>
-
-    <link rel="preload" href= /css/style.css?v=20180630 as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= /css/mobile.css?v=20180630 media="(max-width: 980px)">
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
-
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/assets/favicon.ico" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-    
-        <body class="home-body">
-    
-    
-<header class="header index-header">
-
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <a class="home-link" href=/>fi3ework's Studio.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style=
-
-
-
-
-
-
-
-
-height:50vh;
-
->
-    
-    <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            fi3ework's Studio.
-            <!-- 文章页  -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-</div>
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
-
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
-
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
-
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/05/教育/" >
-            
-                <span>[Untitled Post]</span>
-        </a>
-        <div class="abstract-content">
-            在当今这个时代的主要观念中，首当其冲的是这样一种观念，即认为教育能够使人大大改变，它会万无一失地改造他们，甚至能够把他们变成平等的人。这种主张被不断的重复，仅仅这个事实就足以最终成为最牢固的民主信条。如今想要击败这种观念，就像是过去击败封建王朝一样困难。
-
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/05/用别人的经验教训自己/" >
-            
-                <span>[Untitled Post]</span>
-        </a>
-        <div class="abstract-content">
-            01.我一个朋友开娱乐城的，最开始主要是经营KTV、看球赛、做生日PARTY、按摩什么的，后来看到他人搞三陪服务很挣钱，于是就学别人这样做，结果就出事儿了，2014年的一天，被100多个公安封了场地，还把他自己关进了，最后还是找朋友帮忙才捞回来，娱乐城经此事之后，生意一下子没有了，最后他1000万投资的娱乐城，被他用500万给卖了，这事儿给他的教训是千万别做违法的事儿和挣快钱，很多人之所以破产或者巨亏就是他想挣快钱。
-02.网络赌博，那种信用卡大额赌博。国外服务器，弹指一挥间，200万就没，妻子走了，房子没了。
-03.我曾经的一朋友1000万做棉花期货，翻了一倍之后换车换房。兴致大增加码...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/07/05/百年复利投资教/" >
-            
-                <span>[Untitled Post]</span>
-        </a>
-        <div class="abstract-content">
-            第一教义：好行业
-有些行业天生容易出贵族，躺着赚大钱。不要投资那些赚辛苦的的行业，不要投资那些需要不断将利润去维修生产机器的行业。要投资那些一百年之后还是赚大钱的行业，如金融、消费、医药。
-第二教义：好公司
-从此只投资中国最优秀的公司，只投资行业龙头。
-与一众垃圾公司、平庸的公司说永别。投资，就要投资最好的，最成功的。投资那些已经被残酷竞争验证成功的公司，不需要投资那些“可能”“将要”成功的公司，直接投资苹果，而不是投资”下一个苹果“。
-第三教义：好价格
-无论多么优秀的公司，都只能在价格便宜（至少是合适）的时候投资。熊市或某个优秀公司出现某种市场偏见，往往是最佳的买入点。牛市或某些过高的...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/05</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    <!-- paginator  -->
-    
-</main>
-            <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /avatar/Misaka.jpg >
-    <div class="profile-name">fi3ework</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-    
+          <a class="main-nav-link" href="/">Home</a>
         
-            
-                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
-            
+          <a class="main-nav-link" href="/archives">Archives</a>
         
-    
+      </nav>
+      <nav id="sub-nav">
         
-            
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
-            
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
-            
-        </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 3
-        </div>
-        <!-- search  -->
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/07/05/百年复利投资教/" >[Untitled Post]</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href= "/2018/07/05/教育/" >[Untitled Post]</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/05</span><a class="archive-post-title" href= "/2018/07/05/用别人的经验教训自己/" >[Untitled Post]</a>
-        </li>
-    
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
   </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-教育" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/05/教育/" class="article-date">
+  <time datetime="2018-07-05T09:20:59.487Z" itemprop="datePublished">2018-07-05</time>
+</a>
     
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在当今这个时代的主要观念中，首当其冲的是这样一种观念，即认为教育能够使人大大改变，它会万无一失地改造他们，甚至能够把他们变成平等的人。这种主张被不断的重复，仅仅这个事实就足以最终成为最牢固的民主信条。如今想要击败这种观念，就像是过去击败封建王朝一样困难。</p>
+
+      
     </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/05/教育/" data-id="cjj8cz38100009gnql59nr4pr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-用别人的经验教训自己" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/05/用别人的经验教训自己/" class="article-date">
+  <time datetime="2018-07-05T09:14:01.254Z" itemprop="datePublished">2018-07-05</time>
+</a>
     
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>01.我一个朋友开娱乐城的，最开始主要是经营KTV、看球赛、做生日PARTY、按摩什么的，后来看到他人搞三陪服务很挣钱，于是就学别人这样做，结果就出事儿了，2014年的一天，被100多个公安封了场地，还把他自己关进了，最后还是找朋友帮忙才捞回来，娱乐城经此事之后，生意一下子没有了，最后他1000万投资的娱乐城，被他用500万给卖了，这事儿给他的教训是千万别做违法的事儿和挣快钱，很多人之所以破产或者巨亏就是他想挣快钱。</p>
+<p>02.网络赌博，那种信用卡大额赌博。国外服务器，弹指一挥间，200万就没，妻子走了，房子没了。</p>
+<p>03.我曾经的一朋友1000万做棉花期货，翻了一倍之后换车换房。兴致大增加码入市。最后亏了6000万，连自己的棉纺厂都亏掉。</p>
+<p>04.亲友中就有两个：一个60岁，先安利学习冲业绩，都是自己买，把实业的钱亏的差不多了。接下来做高利贷，把亲友的钱骗光。一个40岁不到，做高利贷的金融公司，把朋友的房子也坑进去了（因为他自己的房子属于小产权不能抵押）。两个人都为躲债人间蒸发。</p>
+<p>05.我舅，搞长途客运，八十年代万元户，老牛逼了。然后喝酒赌钱，老婆也不会持家，败光家产离婚，妻离子散，身无分文，现在不知道在哪里。</p>
+<p>06.我一个大学同学，做机械设计的。毕业后去了南京一家效益很好的国企，娶了一个漂亮的高中同学。当大家都还在上海打拼的时候，他已经买房了，也买车了，车还是途观。大家都觉得他很如意。</p>
+<p>父母在身边，家里有娇妻，工作有盼头。2015年股市大火，他赚了很多，从此信心大涨，把家里的现金70万全部投入了股市，然后跟银行贷款，还接入场外配资4倍杠杆。在中车停盘前买入这只股票。后面的故事大家应该猜的到。复盘后连续跌停，无法卖出止损，大家可以去看一下k线图。然后欠了银行和配资公司一两百多万。配资公司找上门也还不出钱。</p>
+<p>后面的事情就像电影里一样。配资公司先到单位闹，然后单位把他开除了。</p>
+<p>配资公司再到家里闹，然后车子卖了，房子卖掉了还了一部分钱，小娇妻也含恨离婚了，配资公司到父母家里闹，他大哥想帮他把剩下的还了，大嫂不同意。</p>
+<p>我这同学也硬气，直接逃了。在我们母校的公共自习室躲了一个多月。唉，从幸福美满到四处流窜也就短短几个月。这个故事到此结束，现在没人能联系上我同学，是不是被人干掉了也不知道。更讽刺的是，他如果那套房子没有卖，拿到2016年再卖，欠的钱都能还清咯。</p>
+<p>07.事情发生在10年前，我发小他小时候搬家去了深圳。他爸妈的公司市值十亿，服务行业，已上市。他一个人在美国上学，天高皇帝远，生活糜烂。父母娇纵，对他经济方面从无二话，一夜花几十万什么的，最多就是骂他几句但是最近几年公司下滑，硬撑着，结果有天资金链断了。</p>
+<p>涉嫌各种诈骗，跑路了。</p>
+<p>而给他们公司放贷的银行人员也面临牢狱之灾。现在欠三四个亿吧他家名下所有房产都被收了，豪车也卖了给他们借的钱像无底洞，借第一次肯定还有第二三四次，一次给他们借了三万，不到一个月又没了。他们解释说还没适应破产生活，但我一个工薪阶层也没那么多钱再为他们的大手大脚买单。就这么亲眼看着他们从普通人变得穷凶极恶，他们为了避免吃各种官司，把帮他们的人也套进去了。有人为了帮他们，自己家也破产，甚至差点人亡我觉得福气是有配额的，细水长流，别提前把下半生透支了踏踏实实生活，有自己兴趣爱好，好好爱父母，有一个知心爱人，这一辈子就够了</p>
+<p>08.我认识个人开餐厅的，结果开在了没有人气的地方顾客很少最后就关门不做了亏了一些。所以，做餐饮业选址很关键。</p>
+<p>09.本地建筑起家的赖老板，95年就有上千万资产了，出手极阔绰。那时我读初中，老爹让我喊他赖伯伯，我注意力都在赖老板的假发上，没出声，赖老板就说孩子真腼腆喊一声伯伯给100元，喊了20声，2000元还没揣热老妈就拿过去了。第二年赖老板在旋转餐厅和人打牌，中了局，一天一夜就输光了，回到农村混吃混喝。当年和老爹去看过他一次，老爹感叹“老赖又变回农民了”。</p>
+<p>自家，97年20万收了铁路局下面的一个砖厂，然后有一天砖窑垮了……</p>
+<p>10.我哥当年倒腾煤炭，里面掺了过多的矸石，结果被举报，扣煤扣车罚款，然后破产了，再然后我这个担保人也跟着破产了。</p>
+<p>11.我妈做了差不多三十年生意，做到当地家具最大的经销商，前几年误入保健品，目前欠了百来万债，自己的房子卖了住在我家。还好她还有个铺面，卖了的话能抵债，剩余的钱够她后半辈子花没问题。目前努力卖铺面ing</p>
+<p>12.太多太多了。最惨的几个90年代初起家的实业大佬，2010年前后投身房地产最后却资金链断裂，销许还没下就被熬死了，以前实业的家底也全部被没收拍卖。电器，水泥厂，煤矿……而且家族同乡生意圈之间互相担保互相借贷，团灭。眼看他起高楼，眼看他宴宾客，眼看他楼塌了。</p>
+<p>13.住在我家楼下的邻居，男主人常年在家炒股，而且前些年确实赚了一些钱，房子都是炒股赚的钱买的。2015年自觉在股市的操作水平已经很牛，将房产抵押全数投到股市，恰好遇到崩盘，几夕之间输个精光；后来闹得很大，有黑社会样子的人上门来收房，女主人还是中学教师，也闹到了她所在学校，再后来就再也没见到这家人了</p>
+<p>14.朋友家的邻居，做外汇的，高杠杆，白手起家，住高档小区，开豪车。近期外汇波动剧烈，卖车卖房，变现财产。据说又准备白手起家了</p>
+<p>15.我们温州80年代很多人就出去做生意了，我们村很多去北京的，就是北京大红门那一块。邻居做了二十几年窗帘布料生意，到14年应该有几千万。上波牛市的时候刚开始就赚了几百万，哪见过这阵仗，辛辛苦苦二十几年攒了几千万。这下几个星期就进账几百万，加杠杆进场。结局当然是一地鸡毛，亏了至少1500万，好在北京房子和生意都在。</p>
+<p>16.吃喝嫖赌毒,都是不太好的,但其中以赌和毒最为伤筋动骨.。2016年初，我两个远亲，都是千万身价的，一个在澳门赌博，一个在网络赌球。下场是一个非法集资，大部分亲戚被拖下水，资产倒贴不够，入狱服刑。另一个稍微好点，从大老板到面包车司机。</p>
+<p>所以，有时，快就是慢，慢就是快。做人做事到最后，还是靠拼人品。</p>
+<p>17.我在澳门百家乐从10几个赢到50多个，后来全输了，那年国庆忍不住，又去送了50多个，把通行证护照都撕了，后来没去了，安心炒股。朋友买球，在365上从10多个赢到70多个，当场去订车，后来老婆说说还差个车位，就买了场1.2几的友谊赛，最后全输了，当场把电脑砸了。</p>
+<p>18.股灾1.0，本来滿仓分级A的南宫杠杆加入救市，7月9日早盘底部割肉成功，巨亏，7天把上半年的62.5%收益全部抹平。从此以后，股市我不再相信任何人、任何组织，从此远离杠杆，不此不愿承担任何激进操作带来的风险。</p>
+<p>19.哦。去年股灾前，一帮大佬吃饭。个个几亿身家。面色红润！股灾后，好多亿万的灰飞烟灭。最惨的一个剩下最后5000万市值股票。可是自有资金只有2000万。复牌，一字跌停连续。眼看要破产。群里各位大佬们奋力相助。买开了他的跌停。他排在最前面。</p>
+<p>当日群里没有其他话。都是各种问他成交了多少。他不停的贴还有多少没成交。如果当日他卖不掉。次日完了。负资产。他孩子还小，努力了那么多年的积蓄。那天是我混投资群多年来最感动的一天。投资人天生的是互相拼杀获利的。可那日，大家明摆着亏也认购。也算一个巨亏的故事吧。差点破产。股市风险，慎用杠杆！</p>
+<p>20.自己家，在湖南湘西这边九几年，一直开采小金矿，这个不多介绍肯定赚钱的，即便当时金价就八九十一，后来找到一脉看起来很不错的矿山，于是拉着亲戚家一起，因为这个亲戚的两个兄弟一个在县城是公安的领导，一个是银行的领导。股份是送的，开矿的钱是自己家投的，结果请神容易送神难，最后被各种玩，玩没了</p>
+<p>21.单位一位退休老领导最高四百万，最后配资1500万，原计划赚到一千万收手，结果股灾1.0爆仓。一位同学中学老师，150万本金，融资经历股灾1.0’2.0以后爆仓。另外一位朋友逃过前面两个股灾，却在股灾3.0爆仓。股市的风险必须时刻记心头，轻易不要融资，配资更不可取。</p>
+<p>22.本家堂哥，03年左右跑去山西包煤矿。06年过年的时候用旅行箱装了500多万钞票回家现场分给他爸妈和他老婆儿子。07年我爸出差去看他，说他让司机开了一辆玛莎拉蒂来机场接他。给我爸开的是五星酒店的总统套房。后来的故事大家都知道了，煤矿收归国有了。现在堂哥和他家小孩在镇上摆个摊子卖拉面为生，我爸说他还欠着别人一千多万没还。我老家这号称中国矿山井巷业之乡，这样的不是个例。</p>
+<p>23.我好多这个案例，说个贴近生活的吧，上海金山枫径的服装城项目10多年前来浙江招商，有个公务员借了很多钱买了12套，波折了十多年，项目没有起色，因为服装城有大产权证，其中10套拖着不给办证，最后还被服装城抵押给了民生银行(– –,买入)和徐汇区抵押金融公司了，至今没有一分钱的租赁收入，服装城长满荒草，十多年间从富裕沦为赤贫，负债不但没还完，利滚利大概比当初还翻了一倍。现在嘛……呵呵，豪赌失败的结果就是被时间磨掉所有人格。</p>
+<p>24.本地一个轧辊厂，本来做的不错。从2012年开始吸收本厂职工的资金，说是作为流动资金，承诺每年大概百分之十的利息吧。没多久，厂子经营不好的事开始传来，厂子给结了部分利息，职工不再闹事啦。大概到2014年厂子给工人结息也困难啦。工人再次闹起来的时候，发现厂子不仅借银行的钱数量惊人，外面了借了不少高利息贷款，资不抵债。多个债主全都围着要借款！工人见势不妙，开始搬厂子的设备。银行派人堵住厂子的门口，但也晚了，厂子已经没什么设备产品了。2015年，工人开始上访要钱，企业破产被列到政府工作中。后来政府和法院协调处理啦。毕竟，厂子占的地是经过正当程序办的，拍卖了也是不少钱的！</p>
+<p>25.我弟15年本金60万，一直1：1融资，到6月份做到600多万带融资，本来打算做到1000万收手呢，大跌前几天未爆仓，后轻信证券人员坚持持有，反弹两天并未减仓，继续大跌后爆仓，前十年收入瞬间消失，倾家荡产…融资是把双刃剑</p>
+<p>26.一个朋友，做药的，厌倦了天天跟医生打交道的日子，开了一个中型沐足中心，前期投入100万的样子，没什么客人帮衬，每月亏4-5万的样子，先是借光女朋友的积蓄，再向所有的亲戚朋友们借钱维持开支，我也借了两万给他，到最后实在借不到了，就开了5-6张银行信用卡来套钱过日子，还把他父母在五线县城唯一的一套2居室抵押贷款，熬了一年半，山穷水尽，欠了一屁股债，后来想把沐足店转手，一直找不到人接手，花了7000大洋给一个著名的网上二手中介公司，承诺一定会转手成功，不久来了一个买家，敲定价钱为21万，先付7万。然后买家把店里的东西全部变卖，并且把一些客人的预付款也卷走了，余款？当然没有了！想想都是套路啊</p>
+<p>27.小时候，附近街上有个和父亲一般年纪和蔼可亲的大叔，开了个卖香火的店，童叟无欺，又乐善好施，人缘口啤很好，店里生意非常兴隆。据说家境几百万，那是在九十年代，简单就是巨富。</p>
+<p>转折来了，那时刚兴起彩票合法，宣扬利国利民，这个大叔开始玩，结果新鲜事物上瘾了，越买越亏，越亏越买，每天至少都几千，尽管也中过几万的，但长期下来，没几年就耗光了家底，变卖了店面，甚至向别人借钱，由于人缘好，借了很多钱，我们家以前很穷也借了他两千块钱，最后还是赔进去了，无力偿还，上吊自杀了。这事对我触动极大，一个和气友善的大叔说没就没了，又震惊又伤心。</p>
+<p>此例说出来，提醒大家，不要总想着一夜暴富，赌博，毒品等千万别沾，不要高估自己的自制力，即使在合法的A股，我们也要心存畏惧、留有余地。愿大叔天堂走好！</p>
+<p>28.2000年前，我们公司前总经理靠我们公司地理位置优厚，用我们公司的临街门面开了饭店，挖了第一桶金，然后越滚越大，开饭店，开煤矿，铁矿，甚至在我们公司不远买了一块地皮盖了一座大楼。可是风云突变，她大量融资，煤矿和铁矿货发出去了，钱却要不回来，她也还不了大量的融资。于是资金链崩塌了，她也锒铛入狱了……</p>
+<p>29.本地一个石材老板，2014年入市，投入2000万赚到最多6000多万，2015股灾前全仓融资买进了辽宁成大(– –,买入)，连续跌停的最后一天早上，被证券公司平仓，然后看着连续涨停而去，最后只剩下20多万。对我说起此事，他满含眼泪。当然，他没有破产，生活过得还是很好，只是这一笔巨亏，对他来说，永远抹不掉的记忆。</p>
+<p>30.哈哈，小编是不是想幸灾乐祸下，开个玩笑。和其他人相比，我见证的可能不是多大事，但也震撼到了我。我爸一铁哥们，在15年股市激进，最多10倍杠杆场外配资，赚了一大笔。在顶点时候觉得风险太大，改成了场内1倍杠杆，但仍禁不住股市暴跌，最后赔了2000多万，本金也赔了不少。我爸说认识他二十多年从没见过他如此消沉。不过现在应该好了很多。</p>
+<p>p.s我家非常走运，顶点8倍左右，股灾之后仍然接近5倍收益。不过周围人的经历让我现在的投资非常注意安全边际。</p>
+<p>31.破产、巨亏，是因为超出自己承受力去运作。因杠杆而破产的人，都是不大会控制杠杆的。证券商“最高杠杆率+满仓”是非常危险的，我看到有些客户就因此在2015年巨幅震荡中被消灭了。使用杠杆需有度，对波动率小的品种（比如ETF）可以加点杠杆；对杠杆率很高的品种（比如期货、期权）等应该人为地降低杠杆率才对。</p>
+<p>对波动适中的股票加杠杆，我的看法是应人而异，可根据每个人的风险承受力”适度”地使用杠杆或不使用杠杆，使用杠杆的前提是自己要对杠杆的运作和后果有清晰认识，然后才采用适合自己的“杠杆倍数”。用杠杆有一定风险，但也不必把杠杆妖魔化。有人靠杠杆翻身崛起，也有很多人失败的，关键是如何驾驭它。杠杆本身无大罪，多是使用者的问题。</p>
+<p>32.因为他前半生过得大顺了。跟本就不知风险为何物。一个连老虎都不认识，不了解的人，终于最后见到一群老虎时就完全菜到家了。那这种人的人生最危险的。要么那一天傻傻的闯个天祸，什么都糟逼了，对付不了，责也担不。就彻底塌陷了。这也是从小没进行失败训练和风险教育的给果。</p>
+<p>真正的好风险教育就是让人摔些可控各种的跟头，一些可承受的失败。这就如同小孩被火炀过，长大后就不会无节制去乱玩火。小时打架时打伤过人后后悔过，大小时就不会冲动下去杀人。</p>
+<p>33.老家坐标，长三角某三线城市。个人职业金融行业，某客户2000开始做外贸，那时候阿里巴巴刚起步，外贸生意需求很大。老板当年25出头，因为老家本地有特殊产业。所以天时地利，到2008年金融危机的这段时间里，老板赚了差不多2000多万。</p>
+<p>当时真的是春风得意，家庭事业到了人生顶峰。08年后，老板也意识到外贸很难做了，于是决定转型。因为做外贸的时候，接触过服装这一类，也有下游客户。于是决定贷款买地建服装加工厂，记得很清楚注册资金200万美金。前两年里，因为有下游几个大客户的生意，日子过的还可以。然而最近几年，服装行业不景气，下游客户要么纷纷倒闭，要么开始要求拖欠货款。然而上游原材料客户的钱缺不能拖，于是厂里资金越来越紧。</p>
+<p>老板夫妻在各自信用卡刷爆的情况下，开始被逼到处借高利贷，甚至向企业内部员工集资。最后在去年下半年，终于顶不住压力，丢下一帮拖欠大半年工资的员工跑路了。回头想想，当年该老板要是用2000多万，在当地买房置业，商铺之类的。或许现在的生活真是无忧无虑。有时候，前十几年太顺，后面懂得不折腾要适当守城的人，实在太少。因为他们总把运气当成自己的实力！</p>
+<p>34.我二姑，就是普通人，做鸡蛋生意，几年下来辛辛苦苦的积累了几十万，等着给我表弟结婚用。13年相信一个生意伙伴，把抢全部放给他收利息，三分利，我二姑就是那种能吃苦肯干，也喜欢走捷径的人。自己的几十万放进去不说，还让同学朋友在她这儿放，她从中间再赚些差价。甚至还借了朋友几十万放进去。这几年利息赚了不少，再加上卖鸡蛋挣得钱，反正有了钱就放进去。</p>
+<p>我们家对这件事都反对，她却认为那人可靠.不会有事。16年11月那人突然死了，所有钱一分拿不回来。不仅自己全赔进去，还欠了几十万。哭哭啼啼回家让我们帮忙说不想活了，你说这事一开始我们都是不同意，你不听，现在全砸里面了你来找我们帮忙了，自己的亲人又不能见死不救，只能帮。唉，这事不仅仅坑了自己，也坑家人啊</p>
+<p>35.权证最疯狂的时候，旁边一股友赌博成性。有一个权证当天就要退市了，他还在炒。权证上窜下跳，他全部资金压入，然后权证一路暴跌，然后股市3点停牌他都没有出来。他立马蒙了。脸色苍白。幸亏他买的是认购权证，还挽回来一点点的损失。</p>
+<p>36.东莞一开厂的朋友，与哥哥一起开工厂，当时说自己在厂里有300万的股份，2013年赌博，应该是被人设局，最后赌输了很多，欠了高利贷200万吧。最后带着老婆，儿子，女儿跑路了。现在也杳无音信。</p>
+<p>37.我一个同学，前两年聚会，喝酒高了，说惨痛经历。中学毕业就进厂，成为厂子老板的女婿，08年一年就纯赚200多万。结果管不住老婆，一晚上就把家里资产亏光。好在农场建了栋别墅。现在，跟老婆离婚。接手不死不活的厂子，带着儿子生活。</p>
+<p>38.15年5月，一姓李的哥们眼红牛市，卖掉了仅有的两套房子和车子再加融资全仓炒股，大慨有资金近500万，鼓动我也跟着入市，他是全部身家加融资，我就投了十万积蓄。紧接着股灾至，两人都是硬扛，我最多时亏损百分之六十，后来到16年买中高送转的爱康科技(– –,买入)然后中了几次新股慢慢回来了，略有小赚；哥们比较悲惨，3.0时被强平，仅剩的余资一条道走到黑……现在基本上淡出了朋友圈，听说一屁股债，租房子都出不起租金了……</p>
+<p>39.评论里都是巨亏后一蹶不振的悲惨故事，很心酸，我深有体会。因为我也有巨亏的经历，一样的悲惨：一零年我做期货几乎赔光了。伤心欲绝了一年。然而我并没有就此消沉，在暗自拟定目标，积极调整心态重回股市后，今天已经重回市值高峰，不胜唏嘘，无限感慨。</p>
+<p>经此一难，我做人做事的心态平和了许多，不亲身经历过的人断难体会。我在想，有时候，巨亏经历也可以是漫漫人生路中的宝贵财富。唯如此，方知财富得来不易，就会倍加珍惜。守护财富，远离杠杆。</p>
+<p>40.本地某钢贸老板，两千年就开上了大奔，过年给红包以千为单位的，不知道为什么08年迷上了炒期货，加杠杆最高赚到了两三个亿，然后又经历了爆仓，借钱加杠杆爆仓，躲债，离婚的凄惨命运，现在在做卤味供应给各个酒店、饭店，也重新买房买车。</p>
+<p>41.广西支教的时候认识的某大哥，缺一个小手指头。是他自己剁下去了。2000年左右他家养珍珠和水产，可以说是富甲一方了。后来03年赌大钱，产业被输的半死不活，别墅抵押，老婆带着孩子不跟他了。幸好是家族，有人拉扯，不至于落魄，但也没有当年富贵了。他讲完自己的故事后，语重心长的跟我们说：这赌博太害人了，你们别沾啊。说完后掏出电话下单，买了一千块的世界杯小组赛盘口。当时都不知道说啥了。太尼玛戏剧了。</p>
+<p>42.老家在黑龙江省某县城，去年中旬开始，稳定发展了七八年的非法集资陆续爆掉，这七八年发展到什么地步了呢？收钱的组织起码十个以上，基本全县人民甚至周边县城的都来这里放钱。爆掉的后果十分惨烈，身边的叔叔阿姨哥哥姐姐同学朋友甚至我父母基本都中招了，去派出所报备，多的亏几百万，少的几十万，有在银行工作的同学甚至还欠了自己单位十几万贷款。</p>
+<p>听说有几个自杀的，认识的就我这个同学的一个同事，跟很多人借钱，在单位割腕，后来被救活了，虽然她欠了别人不少钱，但是也没人敢要了，怕再逼得人家自杀，人死了债肯定就瞎了。过年回家的各种聚会上，任何一场都会有人聊到这个话题，虽然很多人存款都消失了，不过日子还是那样过，只不过之前一些富裕的叔叔大爷从半退休状态重新想办法赚钱了。</p>
+<p>我每年回家都会和我爸妈说千万别在外面放钱，然而二老还是瞒着我放了，不论我怎么强调风险，过去几年的高额稳定收益是实实在在的，根本不听劝，其他亲戚朋友可能多半也都是根本不懂，只知道这是靠谱赚钱的方法，根本不知道风险。以我浅薄的认知，只能认为政府不作为，没有在苗头刚刚出现的时候及时遏制，导致这么巨大规模的集资，基本影响了全县人民的生活，全县经济倒退几年都是乐观的估计了。</p>
+<p>43.我有一个亲戚搞美术的，后搞装潢，县城里四五套房产，一年几十万，媳妇漂亮，两个儿子子承父业，乡亲羡慕；后来当地兴起吊车生意，就是去上海等大城市接活干的那种，他也买了几辆，应该也上了杠杆，没有经过严酷商业训练的他，要账拉不下脸，欠别人钱不好意思不还，卖了所有房产还钱，连吊车都被干活的人低价买去，可能也涉嫌被骗。</p>
+<p>最后，抑郁生病而死。</p>
+<p>44.我原来所在公司的销售老大，四十多岁，阅历多，巨亏于担保公司。让他相信的原因无非两条，一是每年15%左右的固定收益；二是所谓的黄金担保，即签订购买金条的合同，实际上不拿金条，用金条做担保（当地数家连锁店，每家店都搞的富丽堂皇）。</p>
+<p>收益取得的很幸福也很短暂，不到两年资金链就断了，先是没有利息，后来本金无法取出，关店，跑路，金条早都没影了。目前案件还在处理中，不知道最后能剩余多少本金，或者说不知道还能不能剩下本金。</p>
+<p>45.儿子幼儿园同学的爸，开厂做手机配件行业的老板，之前住着大房子，老婆在家带小孩，日子过得不错。后来厂里拖欠供应商货款停工，一度跑路，又回去重组，还是支撑不下去全家彻底跑路，银行贷款货款高利贷总共几个亿；后来孩子妈发现男人养了小三好多年，还生了个小孩，只好离婚，彻底被坑了。。。</p>
+<p>46.资产保值增值最可怕的做法：放贷收利息，炒股加杠杆！</p>
+<p>47.听说的不讲，亲身经历。我一个阿姨，经常见面，家里就是普通双职工，吃饭都要计算成本，直到退休积攒了100多万。本来一直买信托理财，后来嫌利息太低，把钱借给她妹妹熟悉的一个老板。二分息。老板请她吃了几次饭，一桌人都借了钱给他那种，说他到处都是房子，就很相信那人。</p>
+<p>后来还请我妈吃了几次饭，逢人就借钱的人。我妈当时就劝她，年纪大了输不起，听不进去。据说那人研究了什么包赢的方式买彩票。赚过上亿。后果可想而知。一群债主闹了半天，打了官司，赢了。那老板进了监狱。但他们一群人一分钱没拿回来。她妹300多拿不回来，现在日子更紧，培养孙女都只有到处蹭课听。</p>
+<p>48.本地房产商，拥有一集团公司和一家房产商，3亿多拿了一个地搞房地产开发，一切都很顺利，儿子在矿产价格最高峰看中一矿产资源公司，融资投入，结果悲剧了，房地产被银行抽贷，房产成烂尾房，集团被银行查封抵押，最后在政府出面下房产逾期半年才交付，逾期赔付都没有，老板的所有支持被查封，还上了老赖的榜单。</p>
+<p>本来这个房地产项目，3千多拿地，均价9500一平方出售，销售十分好，挣一亿没有什么问题。运气不好啊！</p>
+<p>49.我原来小区的隔壁邻居是一对安徽的老头老太，他们的小女儿帮他们买了这套三房，让他们在上海帮子女带小孩。小女儿自己住洋房，开宝马，老公是在上海徐家汇(– –,买入)做电脑器材发家的，后来不做了，就买了洋房（永嘉路）和别墅（闵行）。14。</p>
+<p>15年听说女婿做期货还是什么亏钱了，把洋房给卖了，小夫妻只能去广东和朋友去做LED生意，老头老太也跟着去了几个月照顾他们。今年过年回去一次得知，隔壁的房子去年16年低价出售了，安徽老夫妻也回老家了，小女儿离婚了，宝马别墅也都卖光了。</p>
+<p>50.见过一个客户发家，破产，大概是这样的，十多年前我这里的一个放牛娃去深圳打工偷学厂里的配方，回家自己开了个低成本高利润的厂，不到几年生意做到几千万，因我去他厂里多了打听他本人大概有俩仟万左右家产。但他觉得厂太小生意不大，去外地买了土地搞大厂，听说投资不少一亿，好几年没跟他做生意了，今年跟朋友谈到这人时候才知道他前年破产了，是因他建厂资金不够大量借高利贷，就因他心太高，想发展快点而破产。</p>
+<p>51.这个我最有发言权了:一个同事，是个拆二代，2014年中入市，本金10万，年底券商行情过后，小赚20%，都说牛市来了，觉得本金太少，于是配资两个账户，每个配25万，2015年初，创业板最后行情开启，一个账户全仓买了华中数控(– –,买入)，一个买了机器人(– –,买入)，2015年6月，华中数控高位停牌，证监会清理配资，配资公司打电话，说证监会正在清理场内配资，要不你补钱把账户拿走，要不里面的股票给你折成本金年化8%现金还给你，当时那种行情同事哪里愿意被收回账户，于是又问家里要了将近30万买回账户，然后，放出来都是一轮股灾以后的事情了，然后就没有然后了……听说他仍然奋战在市场里，据说还加大了投资</p>
+<p>52.浙江有一位房地产的前辈，在那边也算知名人士了。八十年代就做房地产了。他是一个传奇！文化水平不高，小学。从做泥工开始。做到几十亿。往年每年过年都见面的。一家人和和气气。在当地名声也很不错。因为，他盖房子，是有良心的，用工用料都实在。自己就住在自己盖的小区里，办公室也在自己盖的小区里。每次去看，那办公室都安安静静，里面的员工都是动辄十几年几十年跟随他的。为人真是不错！</p>
+<p>结果，前些年，经营方面出了问题。因为他借了很多民间借贷，我知道的一笔就是，找浙江一家非常有名的上市公司周转了大约五千万，利息一年一年五百万左右，借一年。结果，后来回款了，想提前换，人家不让，非得全额算利息。为什么他会这样呢？因为，他不太管具体经营，可能本身也不太精通，加上人很实在，所以，周边很多打他主意的人。</p>
+<p>这个弄一点那个弄一点，像一艘船，破了很多小洞。各种奇闻，都是他那里得知的。有旗下老伙计，承包钢材木材的，卖给他，一车拖进工地，然后转一圈，拖出来，再转回去，又算一车的钱。可是，早些年，利润高，这些小钱，根本不算什么，也就算了，都是老伙计了~大约前几年的时候，市场不好了，加上，屋漏偏逢连夜雨，几块地由于拆迁，领导换届等问题，拖进去了。这下子，就倒霉了！话说，由俭入奢易，由奢入俭难。这一下，摧枯拉朽，处处碰壁。就去民间贷款，银行贷款。</p>
+<p>最后绷不住了。要知道，有些钱，放贷给你的人，你是不得不还的！一旦出了问题，变卖各种资产，先把这些不得不还的大爷的钱还了，才有机会往后走。好了，拆东墙补西墙，这样搞了一阵子，还是绷不住。</p>
+<p>我那时候看他，真是感叹，他很早就开奔驰600了，老款的，巨大无比，然后，他身高不高，从车里下来，再加上比较憔悴，真是看上去难过…再后来，被以非法集资抓进去了。至今关了好几年了，听说可能快出来了。这几年，年年都和家人在监狱过年，他儿子也被抓进去了，当时在另一个城市被手机定位，一下子就抓到了，飞快的！这我党要抓人啊，哪里跑都跑不脱。</p>
+<p>最后清算，我都傻了，创业三十多年，最后倒欠国家几十亿。我都不知道怎么算的！当时想引入新房产公司收购或者入股啥的，都到这一步了，谁还雪中送炭？都跟秃鹫一样等着，那是世态炎凉！</p>
+<p>由于他整个发展历程，这几年我都多有耳闻，我前些年还专门请我的伙伴们去了浙江，专门在他工地待了好久，开会，检讨，那一片别墅，真是好位置好房子，可是，无人开工，落寞异常，我们待在那里，就感叹！真是要保守！保守一点，方能去求长治久安！你钱多，身边很多人可能就冲着你的钱来，你权利大，那么，就冲着你的权利来！经营一个事业，随时要想到万一发生最坏的情况，我该如何面对，应对！投资理财，随时要想到，万一再有股灾出现，我该如何处理！我想，我可能这辈子都不会去尝试满仓了，更不用说融资融券那种杠杆了。</p>
+<p>这位前辈带给我的冲击太大了。后来我写了一些文章，也是从这里面感悟到的。事业做得再大，倘若没有腾挪的空间，没有弹性的策略，只要一次，只要一次突发状况，很可能就要收走你之前累积的所有！后来，我对欧文卡恩那句话，有了很深刻的体会——格雷厄姆教给我最大的一点就是抵御赚取快钱的诱惑！以及，巴菲特说——人一辈子富一次就好！那真是充满智慧的格言！一辈子富几次，能留下传奇的经历，能留下动人的故事。一辈子富一次，只能留下从容安逸的人生，没有故事，没有传奇！</p>
+<p>我要那么多故事干什么？我又不是故事会…</p>
+<p>53.本人即亲身经历过炒股巨亏和破产。作为有过亲身经历的我来说，我觉得比看到别人类似的故事，可能更有些发言权。简单说说我的巨亏经历吧！我是1999年入市，2003年开始专职炒股，2005年开始帮着打理几个亲友的账户，到2007年底累计收益7倍多，还算顺风顺水。但08年股灾来临，我因为没有及时离场先是大亏，后来又急于翻本使大亏变成了巨亏。</p>
+<p>到2008年10月，最大亏损75%，全年亏62%。有些06和07年才代管的亲友账户亏损幅度过半，当然，自己的账户也是一样的损失惨重。自己的损失自己担，但别人的损失即便不承担，我也有责任把它赚回来。如果加上需要我赚回的这几百万损失，名义上我是已经破产了的。</p>
+<p>直到2014年，过去整整七年，我用7年4倍的收益挽回了全部损失并市值创新高。从05到16年底，实现了25.7%的年化，让6000点高峰时进场的亲属账户也实现了收益翻倍。经历的这一切，既与自己性格比较执拗有关系，也来自不断学习后的进化，更离不开一直信任我的人的鼓励。</p>
+<p>巨亏或破产虽然不是好事，但在某种程度上也不完全是坏事。至少我的这次巨亏，让我重新审视自己和投资，并在此后用几年的时间实现了投机者向投资者的转型，也为今后的投资之路找到了方向。</p>
+<p>54.一个普通朋友，农村家庭没啥资本，没啥钱，自己心高气傲，上班坐不住也瞧不上，14年跟人学用信用卡套钱出来各种折腾，动员身边亲人全部都办了卡给他，自己老婆，姐姐，姐夫，，，等等，，，一开始蛮顺利，挣点钱天天吃喝玩乐，（其实后来才知道开始也没赚到啥钱，但是套出来贷款手里上百万就是天天玩，还赌钱）后来开始抵押车子房子，又在身边朋友同学借钱，五万十万的借，骗，最后沦落到没钱吃饭两百块也要借。</p>
+<p>大概一年后，瞒不下去了，跟家人交代一共欠了200万左右吧，中部地区农村家庭这算一笔巨债，各种银行信用卡现金分期，各种小额贷款，网络贷款，车子房子抵押贷款，连她老婆名下也不能幸免，父母家天天被各种银行贷款公司委托的讨债人闹得一塌糊涂，一气之下把他赶出门，媳妇直接诉讼离婚孩子也不要了直接走了，真正的妻离子散，家人不容，有家不能回，凄惨！！！16年5月份后到现在就没消息了，，，，这人是我朋友圈一个最负面的警醒，整个圈子朋友都常谈起以此人为戒，坚决不做超出能力圈的事，不管赚再多钱，再风光，坚决不碰赌，不沾毒品，风光时要给老婆孩子，父母留一个保他们生活的安全垫。</p>
+<p>55.亲身经历的一家国企公司从诞生到破产关闭。</p>
+<p>2000年A公司成立，注册资本3000万，00年，01年亏损几百万。找到家台湾大企业合资注册资本一个亿。02年盈利几百万，03年顶峰，盈利3000万。04年盈利一千万。05，06年小盈利，07年公司几千万货款被一台湾人拖欠，A公司近一半产品由该台湾人包销，小亏。</p>
+<p>08年亏损几千万，其中有800万是前些年倒卖进口原料被海关发现，罚款800万，欠款几千万的台湾人无钱支付所欠货款，以质量问题为由做退货处理。同年本地媒体报道，金融危机影响严重，盈利几千万的龙头企业因金融危机影响亏损几千万。A公司库存混乱，盘点存货，盘亏上千万。</p>
+<p>总经理年终总结，行业性亏损，集体理解。09年-10年，行业萎缩，公司每年不再谈经营亏损状况。2011后一直亏损数额不详。12年因为与公司打劳动官司，在工商所查到官司09年后每年亏损千万以上。12年本人离开公司。14年A公司兼并集团下另一家公司。</p>
+<p>16年，公司与一家私人企业建立合资公司试图转型，注册资本500万，集团有参股，公司骨干有参股，总经理参股300万。新公司法人为A公司经理。新公司部分费用从A公司走账。</p>
+<p>16年底，当年设立A公司的集团负责人退休，集团新上任负责人决定破产关闭A公司止血。因为A公司关闭不支付补偿，A公司骨干与集团谈判:”请集团公司注意，某年，公司在长期亏损的情况下购买行业某公司二手生产线花了几千万，该生产线购回后花钱安装好就没有开工过，说是经营状况变化止损，行业持续亏损几年了，为何收购了二手设备才发现经营环境发生变化，请集团注意该收购行为是否存利益输送，存在在国有资产流失。”并发送举报信到相关部门。谈判结果集团支付补偿款。A公司进入破产清算手续中。</p>
+<p>个人印象，部分国企，即便是成立了合资企业，建立了董事会，年年有审计，当企业处在内部人掌控中，破产关闭是迟早的事。</p>
+<p>56.讲个自家的故事，2013年老爸进入电商服装行业，以为自己20年的服装经历可以面临一切，没想到电商的规则不一样，新客推广才是最重要的，老客才看质量，300万砸下出到现在都没利润。</p>
+
+      
     </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/05/用别人的经验教训自己/" data-id="cjj8cz38m00029gnqosn5nqcp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-百年复利投资教" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/05/百年复利投资教/" class="article-date">
+  <time datetime="2018-07-05T08:13:31.930Z" itemprop="datePublished">2018-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一教义：好行业</p>
+<p>有些行业天生容易出贵族，躺着赚大钱。不要投资那些赚辛苦的的行业，不要投资那些需要不断将利润去维修生产机器的行业。要投资那些一百年之后还是赚大钱的行业，如金融、消费、医药。</p>
+<p>第二教义：好公司</p>
+<p>从此只投资中国最优秀的公司，只投资行业龙头。</p>
+<p>与一众垃圾公司、平庸的公司说永别。投资，就要投资最好的，最成功的。投资那些已经被残酷竞争验证成功的公司，不需要投资那些“可能”“将要”成功的公司，直接投资苹果，而不是投资”下一个苹果“。</p>
+<p>第三教义：好价格</p>
+<p>无论多么优秀的公司，都只能在价格便宜（至少是合适）的时候投资。熊市或某个优秀公司出现某种市场偏见，往往是最佳的买入点。牛市或某些过高的炒作，就想小心谨慎起来。</p>
+<p>第四教义：用闲钱</p>
+<p>千古名训：财不入急门。投资是一个长期的过程，千万千万不要用短期急用的钱用于长期的投资规划。</p>
+<p>第五教义：不负债</p>
+<p>无论多么看好的投资机会，都不能上杠杆。市场的熊市往往超越绝大多数人的想象力，利息和心理波动会最终把一个原来很好的投资拖跨。为了赚一些原本不需要的钱而上杠杆最终导致损失了自己需要的钱，太愚蠢了。</p>
+<p>第六教义：不做空</p>
+<p>市场疯狂的时候同样超越大多数人的想象力。疯狂可以让100倍市盈率的股票可以升到300倍。做空理论上的极限收益是100%，而亏损却是无限。以有限的收益对抗无限的时空，太愚蠢了。</p>
+<p>第七教义：耐心等</p>
+<p>任何一次好的投资机会，都是等出来的。时机未到不要急。市场先生常常犯错，只要足够耐心，总能等到好的买入机会。千万不要因为看好一个公司，而盲目买入。当你买入之后，也不要随便卖出。不要随便结婚，结婚之后也千万不要随便离婚。耐心等待熊市买入，耐心等待公司成长，耐心等待市场的高估卖出。</p>
+<p>第八教义：养好身</p>
+<p>身体健康是一切幸福之源，没有身体的健康，如何走完百年复利之条漫长之路。复利是世界第八大奇迹，但它隐含一个条件，就是要有足够长的时间。这个足够长的复利时间，就是直接与我们生命长度挂钩。吃好饭，睡好觉，做好运动！</p>
+<p>第九教义：修好性</p>
+<p>价值投资永远无法成为主流，排除知识层面的因素，主要是因为价值投资本质上是一种违反人性的投资哲学。长期违反人性？当然是不可能成为主流。但为什么有些人做价值投资执行得近乎完美？因为他们把别人违反人性的东西，修练成顺其自然的基因。平常就是一个爱发脾气，投资上怎么能做得好呢？</p>
+<p>第十教义：爱家人</p>
+<p>用无限的包容性，去爱家人，影响家人，首先是自身要做好。一步步构建一个和谐统一的家庭，上到老，下到少，让每一位家庭成员理解你的投资理念，围绕一个统一的目标，让家庭发展为家族。</p>
+<p>通过以上十条的日常修练，我们就具备了走这条百年复利之路的基本条件。</p>
+<p>每年15%的年收益率，复利一百年，就是一百万倍，每投资一万元，就是一百亿！</p>
+<p>什么？你已经六十岁了？你还有儿子，还有孙子，子子孙孙，无穷无尽。投资完全可以成为一个伟大事业，一代一代的传承下去。</p>
+<p>一碗拉面，一个寿司都可以做几百年，凭什么我们投资这样高大上的东西，不能传承几百年。</p>
+<p>股票投资不过是我们人生的万分之一，不过是一个工具。通过投资，解放我们的身体上的劳累，有时间去陪家人，有财富让家人过上更好的生活，有时间去照顾自己的身体健康，有精力去学习最终达到心灵自由。这么好的事，又这么简单的道理，怎么能够失传，必然想一代又一代传承下去。这才是百年复利的最终真义。</p>
+
+      
     </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "John Doe"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/05/百年复利投资教/" data-id="cjj8cz38700019gnqhhhv6pj0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
     
-    <!-- busuanzi  -->
+
+  
     
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
     
-    <!-- CNZZ  -->
+  
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li></ul>
     </div>
-    <!-- async load share.js -->
-     
-    </body>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/05/教育/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/05/用别人的经验教训自己/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/05/百年复利投资教/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
 </html>
-
-
